@@ -15,13 +15,13 @@ def create_image(prompt):
 
 def main():
     items = open('./prompts.txt', 'r').readlines()
+    
+    try:
+        os.mkdir(f"./generated-images")
+    except:
+        print("An error occurred making the folder, probably because it already exists.")
 
     for item in items:
-        try:
-            os.mkdir(f"./generated-images")
-        except:
-            print("An error occurred making the folder, probably because it already exists.")
-
         for i in range(NUMBER_OF_IMAGES_PER_PROMPT):
             image = create_image(item)
             image_name = f"./generated-images/{item}-{i}.png"
